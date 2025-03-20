@@ -17,6 +17,18 @@
 
 }
 
+.viewMoreLink {
+  color: #e99401;
+  font-weight: 500;
+}
+
+.viewMoreLink:hover {
+  color: #e99401;
+  font-weight: 600;
+  scale: 1.1;
+  transition: 0.3s;
+}
+
 .carrito #carrito {
   display: none;
   position: absolute;

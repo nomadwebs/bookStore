@@ -1,4 +1,13 @@
-export default function Header() {
+import { useMemo } from 'react'
+
+export default function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart }) {
+
+    //State Derivado para validar si el carrito está lleno
+
+    /* const isEmpty = () => cart.length === 0 */
+    const isEmpty = useMemo(() => cart.length === 0, [cart]) //A diferencia de la linea función isEmpty anterior, el hook useMemo hace que solo se ejecute cuando cambia la lo que le digamos, en este caso [cart]
+
+    const totalCart = useMemo(() => cart.reduce((total, item) => total + (item.quantity * item.price), 0), [cart])
 
     return (
         <header className="py-5 header">
@@ -16,55 +25,70 @@ export default function Header() {
                             <img className="img-fluid" src="./public/img/carrito.png" alt="imagen carrito" />
 
                             <div id="carrito" className="bg-white p-3">
-                                <p className="text-center">El carrito esta vacio</p>
-                                <table className="w-100 table">
-                                    <thead>
-                                        <tr>
-                                            <th>Imagen</th>
-                                            <th>Nombre</th>
-                                            <th>Precio</th>
-                                            <th>Cantidad</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <img className="img-fluid" src="./public/img/guitarra_02.jpg" alt="imagen guitarra" />
-                                            </td>
-                                            <td>SRV</td>
-                                            <td className="fw-bold">
-                                                $299
-                                            </td>
-                                            <td className="flex align-items-start gap-4">
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-dark"
-                                                >
-                                                    -
-                                                </button>
-                                                1
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-dark"
-                                                >
-                                                    +
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button
-                                                    className="btn btn-danger"
-                                                    type="button"
-                                                >
-                                                    X
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
 
-                                <p className="text-end">Total pagar: <span className="fw-bold">$899</span></p>
-                                <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
+                                {isEmpty ? (
+                                    <p className="text-center">El carrito esta vacio</p>
+                                ) : (
+                                    <>
+                                        <table className="w-100 table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Imagen</th>
+                                                    <th>Nombre</th>
+                                                    <th>Precio</th>
+                                                    <th>Cantidad</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {cart.map(product => (
+                                                    <tr key={product.id}>
+                                                        <td>
+                                                            <img className="img-fluid"
+                                                                src={`/img/${product.image}.jpg`}
+                                                                alt="imagen product" />
+                                                        </td>
+                                                        <td>{product.name}</td>
+                                                        <td className="fw-bold">
+                                                            {product.price}€
+                                                        </td>
+                                                        <td className="flex align-items-start gap-4">
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-dark"
+                                                                onClick={() => decreaseQuantity(product.id)}
+                                                            >
+                                                                -
+                                                            </button>
+                                                            {product.quantity}
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-dark"
+                                                                onClick={() => increaseQuantity(product.id)}
+                                                            >
+                                                                +
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <button
+                                                                className="btn btn-danger"
+                                                                type="button"
+                                                                onClick={() => removeFromCart(product.id)}
+                                                            >
+                                                                X
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                        <p className="text-end">To pay: <span className="fw-bold">{totalCart} €</span></p>
+                                        <button className="btn btn-dark w-100 mt-3 p-2"
+                                            onClick={clearCart}>
+                                            Clear cart
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </nav>

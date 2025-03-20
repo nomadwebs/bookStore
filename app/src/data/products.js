@@ -1,24 +1,27 @@
 export const products = [
     {
         id: 1,
-        name: 'Lukather',
-        image: 'guitarra_01',
-        description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
-        price: 299,
+        name: 'Los Juegos del Hambre 5',
+        image: 'book1',
+        description: '¡Llega la increíble quinta entrega de la saga Los Juegos del Hambre! Cuando te roban todo lo que amas, ¿queda algo por lo que luchar?',
+        price: 19.90,
+        link: 'https://amzn.to/4ieNyZb',
     },
     {
         id: 2,
-        name: 'SRV',
-        image: 'guitarra_02',
-        description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
-        price: 349,
+        name: 'Nuestro lugar en el mundo',
+        image: 'book2',
+        description: 'Luka recurre a la música para comprender sus pensamientos. Nora la utiliza para huir de ellos.',
+        price: 19.85,
+        link: 'https://amzn.to/4iGnJky',
     },
     {
         id: 3,
-        name: 'Borland',
-        image: 'guitarra_03',
-        description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
-        price: 329,
+        name: 'Adiós a la inflamación.',
+        image: 'book3',
+        description: '¿SIENTES TU VIENTRE HINCHADO? ¿PESADEZ EN TU CUERPO? ¿TE NOTAS DE MAL HUMOR, ESTRESADO O MÁS CANSADO DE LO NORMAL?...',
+        price: 18.90,
+        link: 'https://amzn.to/4kKWCXu',
     },
     {
         id: 4,
@@ -26,6 +29,7 @@ export const products = [
         image: 'guitarra_04',
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 299,
+        link: null,
     },
     {
         id: 5,
@@ -33,6 +37,7 @@ export const products = [
         image: 'guitarra_05',
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 399,
+        link: null,
     },
     {
         id: 6,
@@ -40,6 +45,7 @@ export const products = [
         image: 'guitarra_06',
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 329,
+        link: null,
     },
     {
         id: 7,
@@ -47,6 +53,7 @@ export const products = [
         image: 'guitarra_07',
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 349,
+        link: null,
     },
     {
         id: 8,
@@ -54,6 +61,7 @@ export const products = [
         image: 'guitarra_08',
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 379,
+        link: null,
     },
     {
         id: 9,
@@ -61,6 +69,7 @@ export const products = [
         image: 'guitarra_09',
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 289,
+        link: null,
     },
     {
         id: 10,
@@ -68,6 +77,7 @@ export const products = [
         image: 'guitarra_10',
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 349,
+        link: null,
     },
     {
         id: 11,
@@ -75,6 +85,7 @@ export const products = [
         image: 'guitarra_11',
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 399,
+        link: null,
     },
     {
         id: 12,
@@ -82,5 +93,6 @@ export const products = [
         image: 'guitarra_12',
         description: 'Morbi ornare augue nisl, vel elementum dui mollis vel. Curabitur non ex id eros fermentum hendrerit.',
         price: 379,
+        link: null,
     },
 ]
