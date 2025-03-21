@@ -9,7 +9,14 @@ function App() {
     return localStorageCart ? JSON.parse(localStorageCart) : []
   }
 
-  const [data, setData] = useState(products) //Como es un proyecto pequeño cargamos directamente los datos en el State, si cargara de una api utilizaría el useEffect para cargarlo
+  //Como es un proyecto pequeño cargamos directamente los datos en el State, si cargara de una api utilizaría el useEffect para cargarlo
+  //NOTA: 21/03/2024 - Al principio lo hemos cargado directamente en el state
+  //Pero despues usamos el useEffect para cargarlo desde el localStorage, por lo que usar setData en el useState ya no es necesario.
+
+  /* const [data, setData] = useState(products) */
+  const [data] = useState(products)
+
+
   const [cart, setCart] = useState(initialCart)
 
   const maxItems = 5
