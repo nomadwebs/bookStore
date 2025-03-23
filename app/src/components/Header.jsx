@@ -1,13 +1,4 @@
-import { useMemo } from 'react'
-
-export default function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart }) {
-
-    //State Derivado para validar si el carrito está lleno
-
-    /* const isEmpty = () => cart.length === 0 */
-    const isEmpty = useMemo(() => cart.length === 0, [cart]) //A diferencia de la linea función isEmpty anterior, el hook useMemo hace que solo se ejecute cuando cambia la lo que le digamos, en este caso [cart]
-
-    const totalCart = Number(useMemo(() => cart.reduce((total, item) => total + (item.quantity * item.price), 0), [cart])).toFixed(2)
+export default function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, isEmpty, totalCart }) {
 
     return (
         <header className="py-5 header">

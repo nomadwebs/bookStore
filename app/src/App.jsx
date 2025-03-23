@@ -1,84 +1,19 @@
 import Header from "./components/Header"
 import Product from "./components/Product"
-import { useState, useEffect } from "react"
-import { products } from './data/products.js'
+import { useCart } from "./hooks/useCart.js"
 
 function App() {
-  const initialCart = () => {
-    const localStorageCart = localStorage.getItem('cart')
-    return localStorageCart ? JSON.parse(localStorageCart) : []
-  }
 
-  //Como es un proyecto pequeño cargamos directamente los datos en el State, si cargara de una api utilizaría el useEffect para cargarlo
-  //NOTA: 21/03/2024 - Al principio lo hemos cargado directamente en el state
-  //Pero despues usamos el useEffect para cargarlo desde el localStorage, por lo que usar setData en el useState ya no es necesario.
+  const { data,
+    cart,
+    addToCart,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    clearCart,
+    isEmpty,
+    totalCart } = useCart()
 
-  /* const [data, setData] = useState(products) */
-  const [data] = useState(products)
-
-
-  const [cart, setCart] = useState(initialCart)
-
-  const maxItems = 5
-  const minItems = 1
-
-  //cada vez que cart cambie, el useEffect se ejecutará, y en este caso grabará een el localstorage
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
-  }, [cart])
-
-  function addToCart(newItem) {
-
-    const itemExists = cart.findIndex((prod) => prod.id === newItem.id)
-
-    if (itemExists >= 0) {
-      if (cart[itemExists].quantity >= maxItems) return
-
-      const updatedCart = [...cart] //Hago una copia del cart
-      updatedCart[itemExists].quantity++ //Sumo una unidad
-      setCart(updatedCart) //Actualizo el state
-    } else {
-      console.log('no existe, lo añado')
-      newItem.quantity = 1
-      setCart([...cart, newItem])
-    }
-
-  }
-
-  function removeFromCart(id) {
-    console.log('eliminando', id)
-    setCart(prevCart => prevCart.filter(product => product.id !== id))
-  }
-
-  function increaseQuantity(id) {
-    const updatedCart = cart.map(item => {
-      if (item.id === id && item.quantity < maxItems) {
-        return {
-          ...item,
-          quantity: item.quantity + 1
-        }
-      }
-      return item
-    })
-    setCart(updatedCart)
-  }
-
-  function decreaseQuantity(id) {
-    const updatedCart = cart.map(item => {
-      if (item.id === id && item.quantity > minItems) {
-        return {
-          ...item,
-          quantity: item.quantity - 1
-        }
-      }
-      return item
-    })
-    setCart(updatedCart)
-  }
-
-  function clearCart(e) {
-    setCart([])
-  }
 
   return (
     <>
@@ -88,6 +23,8 @@ function App() {
         increaseQuantity={increaseQuantity}
         decreaseQuantity={decreaseQuantity}
         clearCart={clearCart}
+        isEmpty={isEmpty}   //Para pasarle el estado de si el carrito está vacio o no al componente Header por props
+        totalCart={totalCart} //Para pasarle el estado del total del carrito al componente Header por props 
       />
 
       <main className="container-xl mt-5">
@@ -98,8 +35,7 @@ function App() {
             <Product
               key={product.id}
               product={product}
-              cart={cart} //Para pasarle lo que tiene ahora mismo el carrito 
-              setCart={setCart}
+              cart={cart} //Para pasarle lo que tiene ahora mismo el carrito al componente Product
               addToCart={addToCart}
             />
           ))}
